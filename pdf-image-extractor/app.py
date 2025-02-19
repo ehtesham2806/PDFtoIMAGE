@@ -53,8 +53,9 @@ HTML_TEMPLATE = '''
         }
         .preview-image {
             max-width: 90%;
-            height: 100%;
+            height: auto;
             width: auto;
+            max-height: 100%;
         }
     </style>
 </head>
