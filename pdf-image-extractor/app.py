@@ -14,6 +14,11 @@ HTML_TEMPLATE = '''
 <head>
     <title>PDF First Page Extractor</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Add jQuery (required for Select2) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Add Select2 CSS and JS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,6 +34,15 @@ HTML_TEMPLATE = '''
         }
         .form-group {
             margin: 10px 0;
+            text-align: left;
+            padding: 0 20%;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .select2-container {
+            width: 100% !important;
         }
         .result {
             margin-top: 20px;
@@ -70,6 +84,20 @@ HTML_TEMPLATE = '''
         widthInput.value = dimensions.width;
         heightInput.value = dimensions.height;
     }
+
+    // Initialize Select2 when document is ready
+    $(document).ready(function() {
+        $('#templateSelect').select2({
+            placeholder: "Search and select a template",
+            allowClear: true,
+            width: '100%'
+        });
+
+        // Update dimensions when Select2 selection changes
+        $('#templateSelect').on('select2:select', function (e) {
+            updateDimensions();
+        });
+    });
     </script>
 </head>
 <body>
@@ -85,11 +113,12 @@ HTML_TEMPLATE = '''
     <div class="upload-form">
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
+                <label for="pdf">Upload PDF:</label>
                 <input type="file" name="pdf" accept=".pdf" required>
             </div>
             <div class="form-group">
                 <label for="templateSelect">Select Template:</label>
-                <select id="templateSelect" name="templateSelect" onchange="updateDimensions()">
+                <select id="templateSelect" name="templateSelect">
                     <option value="">-- Select an option --</option>
                     {% for key, values in dropdown_options.items() %}
                         <option value="{{ key }}" data-dimensions='{{ values | tojson }}'>{{ values.name }}</option>
