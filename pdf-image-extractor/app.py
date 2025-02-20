@@ -4,6 +4,7 @@ from PIL import Image
 import io
 import base64
 import fitz  # PyMuPDF
+from dropdowns import DROPDOWN_OPTIONS  # Import dropdown options
 
 app = Flask(__name__)
 
@@ -58,6 +59,18 @@ HTML_TEMPLATE = '''
             max-height: 100%;
         }
     </style>
+    <script>
+    function updateDimensions() {
+        let dropdown = document.getElementById("templateSelect");
+        let selectedOption = dropdown.value;
+        let widthInput = document.getElementById("width");
+        let heightInput = document.getElementById("height");
+
+        let dimensions = JSON.parse(dropdown.options[dropdown.selectedIndex].getAttribute("data-dimensions"));
+        widthInput.value = dimensions.width;
+        heightInput.value = dimensions.height;
+    }
+    </script>
 </head>
 <body>
     <h1>PDF First Page Extractor</h1>
@@ -73,6 +86,15 @@ HTML_TEMPLATE = '''
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <input type="file" name="pdf" accept=".pdf" required>
+            </div>
+            <div class="form-group">
+                <label for="templateSelect">Select Template:</label>
+                <select id="templateSelect" name="templateSelect" onchange="updateDimensions()">
+                    <option value="">-- Select an option --</option>
+                    {% for key, values in dropdown_options.items() %}
+                        <option value="{{ key }}" data-dimensions='{{ values | tojson }}'>{{ values.name }}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="form-group">
                 <label for="width">Container Width (px):</label>
@@ -123,31 +145,20 @@ HTML_TEMPLATE = '''
 '''
 
 def extract_first_page(pdf_bytes):
-    """Extract the first page of a PDF and convert it to an image"""
-    # Open the PDF using PyMuPDF
     pdf_document = fitz.open(stream=pdf_bytes, filetype="pdf")
-    
-    # Get the first page
     first_page = pdf_document[0]
-    
-    # Convert page to image
-    pix = first_page.get_pixmap(matrix=fitz.Matrix(300/72, 300/72))  # 300 DPI
-    
-    # Convert to JPEG bytes
+    pix = first_page.get_pixmap(matrix=fitz.Matrix(300/72, 300/72))
     img_data = pix.tobytes("jpeg")
-    
-    # Clean up
     pdf_document.close()
-    
     return img_data
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     image_data = None
     error = None
-    width = 800  # default width
-    height = 600  # default height
-    bgcolor = "#ffffff"  # default background color
+    width = 800
+    height = 600
+    bgcolor = "#ffffff"
 
     if request.method == 'POST':
         if 'pdf' not in request.files:
@@ -158,20 +169,18 @@ def index():
                 error = 'No file selected'
             else:
                 try:
-                    # Get form values
+                    template = request.form.get("templateSelect")
+                    if template in DROPDOWN_OPTIONS:
+                        width = DROPDOWN_OPTIONS[template]["width"]
+                        height = DROPDOWN_OPTIONS[template]["height"]
+
                     width = int(request.form.get('width', width))
                     height = int(request.form.get('height', height))
                     bgcolor = request.form.get('bgcolor', bgcolor)
-                    
-                    # Read PDF file
+
                     pdf_bytes = pdf_file.read()
-                    
-                    # Extract and convert first page
                     img_bytes = extract_first_page(pdf_bytes)
-                    
-                    # Convert to base64 for preview
                     image_data = base64.b64encode(img_bytes).decode()
-                    
                 except Exception as e:
                     error = f'An error occurred: {str(e)}'
 
@@ -180,7 +189,8 @@ def index():
                                 error=error,
                                 width=width,
                                 height=height,
-                                bgcolor=bgcolor)
+                                bgcolor=bgcolor,
+                                dropdown_options=DROPDOWN_OPTIONS)
 
 if __name__ == '__main__':
     app.run(debug=True)
