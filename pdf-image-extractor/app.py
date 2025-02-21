@@ -62,10 +62,16 @@ HTML_TEMPLATE = '''
         .background {
             display: flex;
             justify-content: center;
-            align-items: flex-end;
-            padding: 50px 50px 0px 50px;
+            padding: 50px;
             margin: 0 auto;
             box-sizing: border-box;
+        }
+        .background.landscape {
+            align-items: center;
+        }
+        .background.portrait {
+            align-items: flex-end;
+            padding: 50px 50px 0px 50px;
         }
         .preview-image {
             max-width: 90%;
@@ -146,7 +152,8 @@ HTML_TEMPLATE = '''
     <div class="result">
         <h2>First Page Preview</h2>
         <div class="preview-container">
-            <div id="capture" class="background" style="background-color: {{ bgcolor }}; width: {{ width }}px; height: {{ height }}px;">
+            <div id="capture" class="background {{ 'landscape' if is_landscape else 'portrait' }}" 
+                 style="background-color: {{ bgcolor }}; width: {{ width }}px; height: {{ height }}px;">
                 <img src="data:image/jpeg;base64,{{ image_data }}" 
                      alt="First page"
                      class="preview-image">
@@ -179,8 +186,11 @@ def extract_first_page(pdf_bytes):
     first_page = pdf_document[0]
     pix = first_page.get_pixmap(matrix=fitz.Matrix(300/72, 300/72))
     img_data = pix.tobytes("jpeg")
+    img = Image.open(io.BytesIO(img_data))
+    width, height = img.size
+    is_landscape = width > height
     pdf_document.close()
-    return img_data
+    return img_data, is_landscape
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -189,6 +199,7 @@ def index():
     width = 800
     height = 600
     bgcolor = "#ffffff"
+    is_landscape = False
 
     if request.method == 'POST':
         if 'pdf' not in request.files:
@@ -209,7 +220,7 @@ def index():
                     bgcolor = request.form.get('bgcolor', bgcolor)
 
                     pdf_bytes = pdf_file.read()
-                    img_bytes = extract_first_page(pdf_bytes)
+                    img_bytes, is_landscape = extract_first_page(pdf_bytes)
                     image_data = base64.b64encode(img_bytes).decode()
                 except Exception as e:
                     error = f'An error occurred: {str(e)}'
@@ -220,6 +231,7 @@ def index():
                                 width=width,
                                 height=height,
                                 bgcolor=bgcolor,
+                                is_landscape=is_landscape,
                                 dropdown_options=DROPDOWN_OPTIONS)
 
 if __name__ == '__main__':
