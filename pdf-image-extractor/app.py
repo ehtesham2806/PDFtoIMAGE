@@ -65,6 +65,7 @@ HTML_TEMPLATE = '''
             align-items: flex-end;
             padding: 50px 50px 0px 50px;
             margin: 0 auto;
+            box-sizing: border-box;
         }
         .preview-image {
             max-width: 90%;
