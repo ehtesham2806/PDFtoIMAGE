@@ -201,7 +201,7 @@ HTML_TEMPLATE = '''
         const element = document.getElementById('capture');
         const canvas = await html2canvas(element, {
             backgroundColor: null,
-            scale: 2
+            scale: 1
         });
         
         const link = document.createElement('a');
