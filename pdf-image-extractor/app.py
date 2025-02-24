@@ -89,7 +89,7 @@ HTML_TEMPLATE = '''
                             </div>
                             
                             <div class="form-group">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Select Template</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Select DP</label>
                                 <select id="templateSelect" name="templateSelect" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                                     <option value="">-- Select an option --</option>
                                     {% for key, values in dropdown_options.items() %}
@@ -99,13 +99,13 @@ HTML_TEMPLATE = '''
                             </div>
 
                             <div class="form-group">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Container Width (px)</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Width (px)</label>
                                 <input type="number" name="width" id="width" value="800" min="100" max="2000"
                                     class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
                             </div>
 
                             <div class="form-group">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Container Height (px)</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Height (px)</label>
                                 <input type="number" name="height" id="height" value="600" min="100" max="2000"
                                     class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500">
                             </div>
@@ -169,10 +169,20 @@ HTML_TEMPLATE = '''
         let selectedOption = dropdown.value;
         let widthInput = document.getElementById("width");
         let heightInput = document.getElementById("height");
+        let bgcolorInput = document.getElementById("bgcolor");
 
-        let dimensions = JSON.parse(dropdown.options[dropdown.selectedIndex].getAttribute("data-dimensions"));
-        widthInput.value = dimensions.width;
-        heightInput.value = dimensions.height;
+        if (selectedOption) {
+            let dimensions = JSON.parse(dropdown.options[dropdown.selectedIndex].getAttribute("data-dimensions"));
+            widthInput.value = dimensions.width;
+            heightInput.value = dimensions.height;
+            bgcolorInput.value = dimensions.bgcolor;
+            
+            // Update the preview background color if it exists
+            let previewBg = document.querySelector('.background');
+            if (previewBg) {
+                previewBg.style.backgroundColor = dimensions.bgcolor;
+            }
+        }
     }
 
     $(document).ready(function() {
