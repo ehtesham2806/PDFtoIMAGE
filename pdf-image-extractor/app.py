@@ -78,6 +78,43 @@ HTML_TEMPLATE = '''
 
         <div class="flex flex-col lg:flex-row gap-8">
             <!-- Left side - Form -->
+            <div class="lg:w-2/3">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    {% if image_data %}
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-xl font-semibold text-gray-800">Creative Preview</h2>
+                            <button onclick="downloadImage()"
+                                class="inline-flex items-center px-6 py-3 bg-green-600 text-white text-xs rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                </svg>
+                                Download Complete Image
+                            </button>
+                        </div>
+                        <div class="preview-container border rounded-lg overflow-hidden p-5">
+                            <div id="capture" 
+                                 class="background {{ 'landscape' if is_landscape else 'portrait' }}"
+                                 style="background-color: {{ bgcolor }}; width: {{ width }}px; height: {{ height }}px;">
+                                <img src="data:image/jpeg;base64,{{ image_data }}"
+                                     alt="First page"
+                                     class="preview-image">
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="flex flex-col items-center justify-center h-[500px] text-gray-500">
+                        <svg class="w-16 h-16 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <p class="text-lg">Upload a PDF to see the preview here</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Right side - Preview -->
+
             <div class="lg:w-1/3">
                 <div class="bg-white rounded-xl shadow-md p-6">
                     <form method="post" enctype="multipart/form-data">
@@ -122,42 +159,6 @@ HTML_TEMPLATE = '''
                             Extract First Page
                         </button>
                     </form>
-                </div>
-            </div>
-
-            <!-- Right side - Preview -->
-            <div class="lg:w-2/3">
-                <div class="bg-white rounded-xl shadow-md p-6">
-                    {% if image_data %}
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between">
-                            <h2 class="text-xl font-semibold text-gray-800">First Page Preview</h2>
-                            <button onclick="downloadImage()"
-                                class="inline-flex items-center px-6 py-3 bg-green-600 text-white text-xs rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                                </svg>
-                                Download Complete Image
-                            </button>
-                        </div>
-                        <div class="preview-container border rounded-lg overflow-hidden p-5">
-                            <div id="capture" 
-                                 class="background {{ 'landscape' if is_landscape else 'portrait' }}"
-                                 style="background-color: {{ bgcolor }}; width: {{ width }}px; height: {{ height }}px;">
-                                <img src="data:image/jpeg;base64,{{ image_data }}"
-                                     alt="First page"
-                                     class="preview-image">
-                            </div>
-                        </div>
-                    </div>
-                    {% else %}
-                    <div class="flex flex-col items-center justify-center h-[500px] text-gray-500">
-                        <svg class="w-16 h-16 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        <p class="text-lg">Upload a PDF to see the preview here</p>
-                    </div>
-                    {% endif %}
                 </div>
             </div>
         </div>
