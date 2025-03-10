@@ -1,4 +1,3 @@
-OS
 Flask
 PyPDF2
 Pillow
