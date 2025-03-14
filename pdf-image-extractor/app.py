@@ -215,7 +215,7 @@ HTML_TEMPLATE = '''
     const element = document.getElementById('capture');
     const canvas = await html2canvas(element, {
         backgroundColor: null,
-        scale: 3
+        scale: 2
     });
     
     // Get the current PDF filename (from the hidden input if available)
