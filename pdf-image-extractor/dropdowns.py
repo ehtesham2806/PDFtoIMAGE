@@ -9,7 +9,7 @@ DROPDOWN_OPTIONS = {
         "name": "TechVersions (TV)", 
         "width": 670, 
         "height": 900,
-        "bgcolor": "#12A555"
+        "bgcolor": "#06A13C"
     },
     "businessmediums": {
         "name": "Business Mediums (BM)", 
@@ -21,7 +21,7 @@ DROPDOWN_OPTIONS = {
         "name": "CloudTech Alert (CTA)", 
         "width": 585, 
         "height": 450,
-        "bgcolor": "#121852"
+        "bgcolor": "#2291ed"
     },
     "thebusinessinnovations": {
         "name": "The Business Innovations (TBI)", 
@@ -69,7 +69,7 @@ DROPDOWN_OPTIONS = {
         "name": "The Tech Affair (TTA)", 
         "width": 780, 
         "height": 370,
-        "bgcolor": "#FC4C02"
+        "bgcolor": "#FC3000"
     },
     "techwebtrends": {
         "name": "TechWeb Trends (TWT)", 
@@ -81,7 +81,7 @@ DROPDOWN_OPTIONS = {
         "name": "Digi Influence (DI)", 
         "width": 600, 
         "height": 440,
-        "bgcolor": "#09094F"
+        "bgcolor": "#233F80"
     },
     "thebusinesscover": {
         "name": "The BusinessCover (TBC)", 
@@ -99,7 +99,7 @@ DROPDOWN_OPTIONS = {
         "name": "BizVersions (BV)", 
         "width": 650, 
         "height": 500,
-        "bgcolor": "#1E5631"
+        "bgcolor": "#3cd2b5"
     },
     "protechinsights": {
         "name": "ProTech Insights (PTI)", 
@@ -123,7 +123,7 @@ DROPDOWN_OPTIONS = {
         "name": "Lead Marketwise (LMw)", 
         "width": 700, 
         "height": 300,
-        "bgcolor": "#00A562"
+        "bgcolor": "#00cd0c"
     },
     "thegrowthinsights": {
         "name": "The Growth Insights (TGI)", 
@@ -135,7 +135,7 @@ DROPDOWN_OPTIONS = {
         "name": "TechMaster Pros (TMP)", 
         "width": 480, 
         "height": 360,
-        "bgcolor": "#000066"
+        "bgcolor": "#F2006F"
     },
     "techpulsedaily": {
         "name": "TechPulse Daily (TPD)", 
@@ -147,7 +147,7 @@ DROPDOWN_OPTIONS = {
         "name": "Business Updates 360 (BU360)", 
         "width": 650, 
         "height": 500,
-        "bgcolor": "#04839A"
+        "bgcolor": "#91c702"
     },
     "thebestofblockchain": {
         "name": "The Best of Blockchain (TBoB)", 
@@ -171,19 +171,19 @@ DROPDOWN_OPTIONS = {
         "name": "AllTech Insights (ATI)", 
         "width": 555, 
         "height": 406,
-        "bgcolor": "#A1A9AC"
+        "bgcolor": "#272971"
     },
     "globalsupplychainnews": {
         "name": "Global Supplychain News (GScN)", 
         "width": 555, 
         "height": 406,
-        "bgcolor": "#006996"
+        "bgcolor": "#006997"
     },
     "learningtechedu": {
         "name": "LearningTech Edu (LTE)", 
         "width": 600, 
         "height": 450,
-        "bgcolor": "#333333"
+        "bgcolor": "#00B0DC"
     },
     "growthratefinder": {
         "name": "Growth Rate Finder (GRF)", 
@@ -195,7 +195,7 @@ DROPDOWN_OPTIONS = {
         "name": "Healthcare Business Solutions (HBS)", 
         "width": 600, 
         "height": 439,
-        "bgcolor": "#3cb0e3"
+        "bgcolor": "#2baae1"
     },
     "hrtrendsdaily": {
         "name": "HR Trends Daily (HRTD)", 
@@ -207,7 +207,7 @@ DROPDOWN_OPTIONS = {
         "name": "HRM Ecosystem (HRME)", 
         "width": 650, 
         "height": 500,
-        "bgcolor": "#3081fa"
+        "bgcolor": "#2E7EF6"
     },
     "hrpulsedaily": {
         "name": "HR Pulse Daily (HRPD)", 
@@ -219,19 +219,19 @@ DROPDOWN_OPTIONS = {
         "name": "Livingsights (Ls)", 
         "width": 555, 
         "height": 406,
-        "bgcolor": "#176B97"
+        "bgcolor": "#F3692B"
     },
     "thehrmedium": {
         "name": "The HR Medium (THRM)", 
         "width": 632, 
         "height": 486,
-        "bgcolor": "#20E4E2"
+        "bgcolor": "#3180bf"
     },
     "thetechnodigest": {
         "name": "The Techno Digest (TTD)", 
         "width": 640, 
         "height": 480,
-        "bgcolor": "#11B7EB"
+        "bgcolor": "#22A4DC"
     },
     "bestofbusinesstoday": {
         "name": "Best of Business Today (BoBT)", 
@@ -267,13 +267,13 @@ DROPDOWN_OPTIONS = {
         "name": "Business Stories Today (BST)", 
         "width": 768, 
         "height": 367,
-        "bgcolor": "#37A987"
+        "bgcolor": "#4B3D8E"
     },
     "financeeveryhour": {
         "name": "Finance Every Hour (FEH)", 
         "width": 650, 
         "height": 475,
-        "bgcolor": "#37A987"
+        "bgcolor": "#207827"
     },
     "infobytesdaily": {
         "name": "InfoBytes Daily (IBD)", 
@@ -285,7 +285,7 @@ DROPDOWN_OPTIONS = {
         "name": "Infowatch Daily (IwD)", 
         "width": 632, 
         "height": 486,
-        "bgcolor": "#00455e"
+        "bgcolor": "#02465F"
     },
     "marketinsightstoday": {
         "name": "Market Insights Today (MIT)", 
@@ -297,7 +297,7 @@ DROPDOWN_OPTIONS = {
         "name": "Sales Newton (SN)", 
         "width": 753, 
         "height": 565,
-        "bgcolor": "#002A4A"
+        "bgcolor": "#002a4a"
     },
     "salesmarketscoop": {
         "name": "SalesMarket Scoop (SMS)", 
@@ -309,13 +309,13 @@ DROPDOWN_OPTIONS = {
         "name": "Techinsights Today (TiT)", 
         "width": 650, 
         "height": 475,
-        "bgcolor": "#37A987"
+        "bgcolor": "#334050"
     },
     "technobeatdaily": {
         "name": "Technobeat Daily (TbD)", 
         "width": 480, 
         "height": 360,
-        "bgcolor": "#262261"
+        "bgcolor": "#3AB54A"
     },
     "theeconomydigest": {
         "name": "The Economy Digest (TED)", 
@@ -339,13 +339,13 @@ DROPDOWN_OPTIONS = {
         "name": "The Universal Insights (TUI)", 
         "width": 650, 
         "height": 475,
-        "bgcolor": "#37A987"
+        "bgcolor": "#F3A850"
     },
     "worldbusinesshour": {
         "name": "World Business Hour (WBH)", 
         "width": 555, 
         "height": 406,
-        "bgcolor": "#00D6C1"
+        "bgcolor": "#121271"
     },
     "insightsliving": {
         "name": "Insights Living (IL)", 
@@ -357,18 +357,18 @@ DROPDOWN_OPTIONS = {
         "name": "The Technology Square (TTS)", 
         "width": 650, 
         "height": 500,
-        "bgcolor": "#DD2A1B"
+        "bgcolor": "#AE53FF"
     },
     "healthcareinsightstoday": {
         "name": "Healthcare Insights Today (HIT)", 
         "width": 650, 
         "height": 500,
-        "bgcolor": "#319082"
+        "bgcolor": "#81C14E"
     },
     "protechempire": {
         "name": "Protech Empire (PtE)", 
         "width": 585, 
         "height": 540,
-        "bgcolor": "#37A987"
+        "bgcolor": "#0072FF"
     }
 }
